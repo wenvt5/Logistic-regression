@@ -30,13 +30,12 @@ def train_and_predict():
 
     # train and predict
     model = LogisticRegression()
-    model.fit(x_train,y_train)
     model.predict(x_test)
-    model.predict([[70]])
+    #model.predict([[70]])
 
     # model quality
-    model.score(x_test,y_test)
-    model.predict_proba(x_test)
+    print("Training set score: {:.3f}".format(model.score(x_train,y_train)))
+    print("Testing set score: {:.3f}".format(model.score(x_test,y_test)))
 
     def lr_model(x):
         return 1 / (1 + np.exp(-x))
@@ -51,6 +50,13 @@ def train_and_predict():
     plt.scatter(df.age, df.bought_insurance, marker='+', color='blue')
     plt.show()
 
+"""
+    # the logit function from statsmodels provide summary to help with model optimization
+    import statsmodels.api as sm
+    logit_model=sm.Logit(y_train,x_train)
+    result=logit_model.fit()
+    print(result.summary())
+"""
 
 if __name__=="__main__":
     train_and_predict()
