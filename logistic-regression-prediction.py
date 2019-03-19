@@ -8,6 +8,9 @@ import pandas as pd
 from matplotlib import pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+import scikitplot as skplt
+from sklearn.metrics import roc_auc_score
+
 
 # read input data from program or from csv file
 def load_data(path):
@@ -48,6 +51,13 @@ def train_and_predict():
     plt.plot(sorted_input, whole_prediction, color='red', linewidth=3 )
     # scatter plot of the input data
     plt.scatter(df.age, df.bought_insurance, marker='+', color='blue')
+    plt.show()
+
+    #Plot the cumulative gains graph (I used training+testing data due to the small data size, ideally only test data is used)
+    roc_auc_score(sorted_input, whole_prediction)
+    skplt.metrics.plot_cumulative_gain(sorted_input, whole_prediction)
+    plt.show()
+    skplt.metrics.plot_lift_curve(true_values, predictions)
     plt.show()
 
 """
