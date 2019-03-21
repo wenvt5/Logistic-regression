@@ -11,7 +11,7 @@ df = pd.read_csv('loan.csv')
 df.dropna()
 df = df._get_numeric_data() #drop non-numeric cols
 
-df.head()
+df.head() 
 
 #gather features
 features = "+".join(df.columns - ["annual_inc"])
